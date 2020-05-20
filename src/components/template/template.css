@@ -1,0 +1,103 @@
+#bg {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    background-color: gray;
+}
+#resume {
+    background-color: white;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    height: calc(11.69in * .75);
+    width: calc(8.27in * .75);
+}
+
+#resume h1 {
+    font-size: 24px;
+    margin-bottom: 0;
+}
+
+#resume h2 {
+    margin-top: 0;
+    color: gray;
+    font-size: 20px;
+}
+
+#resume h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+#resume h4 {
+    margin-top: 0;
+    margin-bottom: 0px;
+    font-size: 16px;
+}
+
+#resume h5 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: gray;
+    font-size: 13px;
+}
+
+#resume p {
+    font-size: 12px;
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+#resume ul {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+#resume li {
+    margin: 0;
+    font-size: 12px;
+}
+
+#header {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#body {
+    margin-top: 2vh;
+    display: flex;
+    width: 100%;
+    height: 8.4in;
+}
+
+#sideBody {
+    height: 100%;
+    width: 175px;
+    border-right: black solid thin;
+    margin-left: 5%;
+}
+
+#sideBody h3 {
+    margin-bottom: 5px;
+}
+
+#sideBody ul {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 40px;
+    height: 100px;
+}
+
+#sideBody li {
+    margin-left: 0px;
+}
+
+#contact, #education, #skills {
+    margin-bottom: 20px;
+}
+
+#mainBody {
+    margin-left: 5%;
+}
