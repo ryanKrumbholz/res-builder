@@ -1,29 +1,20 @@
 import React, { Component } from 'react';
-import "./experience.css";
+import "./education.css";
 
 var ResumeExperience = props => {
+    const degree = props.degree;
+    const gpa = props.gpa;
+    const uniName = props.uniName;
+    const uniStart = props.uniStart;
+    const uniEnd = props.uniEnd;
 
-    const itemTitle = "ItemTitle";
-    const itemCompany = "Company"
-    const itemLocation = "Location";
-    const startDate = "Start";
-    const endDate = "End";
-    const tagline = "tagline"
-    let bullets = []
-
-    const bulletItems = props.bulletItems
-    bulletItems.forEach(item => {
-        bullets.push(<li>{item}</li>)
-    });
-    
     return (
         <div>
-            <h4>{itemTitle}</h4>
-            <h5>{`${itemCompany} | ${itemLocation} | ${startDate} - ${endDate}`}</h5>
-            <p>{tagline}</p>
-            <ul>
-                {bullets}
-            </ul>
+            <h3>Education</h3>
+            <p>{degree}</p>
+            <p>{gpa}</p>
+            <p>{uniName}</p>
+            <p>{`${uniStart} - ${uniEnd}`}</p>
         </div>
     )
 }

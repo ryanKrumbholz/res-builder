@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import "./template.css";
 import Experience from '../experience/experience';
 import Project from '../project/project';
+import Education from '../education/education';
 
 export default class ResumeTemplate extends Component {
     state = this.props.state;
@@ -12,7 +13,10 @@ export default class ResumeTemplate extends Component {
     linkedin = this.state['linkedin'];
     github = this.state['github'];
     website = this.state['website'];
-    skillsList = this.state['skills'].split(', ')
+    skillsList = (this.state['skills']) ? this.state['skills'].split(',') : ''
+    jobCount = this.state['jobCount'];
+    eduCount = this.state['eduCount'];
+    projCount = this.state['projectCount'];
     skillsElemList = [];
     eduList = [];
     experienceList = [];
@@ -20,10 +24,31 @@ export default class ResumeTemplate extends Component {
 
     pushSkills = () => {
         for (let i = 0; i < this.skillsList.length; i++) {
-        this.skillsElemList.push(<li>{this.skillsList[i]}</li>);
-        this.skillsList.splice(i, 1)
+            this.skillsElemList.push(<li>{this.skillsList[i]}</li>);
+            this.skillsList.splice(i, 1)
     }}
-    
+
+    pushExperiences = () => {
+        console.log(this.jobCount)
+        for (let i = 0; i < this.jobCount; i++) {
+            this.experienceList.push(<Experience title = {this.state[`jobTitle${i}`]} company = {this.state[`jobCompany${i}`]} location = {this.state[`jobLocation${i}`]} start = {this.state[`jobStart${i}`]} end = {this.state[`jobEnd${i}`]} tagline = {this.state[`jobDesc${i}`]} contr = {this.state[`jobContr${i}`]}/>)
+            this.props.setCount('jobCount', this.jobCount - 1)
+        }
+    }
+
+    pushEdu = () => {
+        for (let i = 0; i < this.eduCount; i++) {
+            this.eduList.push(<Education degree = {this.state[`degree${i}`]} gpa = {this.state[`GPA${i}`]} uniName = {this.state[`uni${i}`]} uniStart = {this.state[`eduStart${i}`]} uniEnd ={this.state[`eduGrad${i}`]}/>)
+            this.props.setCount('eduCount', this.eduCount - 1)
+        }
+    }
+
+    pushProjects = () => {
+        for (let i = 0; i < this.projCount; i++) {
+            this.projectsList.push(<Project title  = {this.state[`projTitle${i}`]} technologies = {this.state[`projTech${i}`]} date  = {this.state[`projDate${i}`]} tagline = {this.state[`projDesc${i}`]} expContr = {this.state[`projContr${i}`]}/>)
+            this.props.setCount('projectCount', this.projCount - 1)
+        }
+    }
 
     header = 
                     <div id="header">
@@ -36,22 +61,14 @@ export default class ResumeTemplate extends Component {
                         <h3>Contact</h3>
                         <p>{this.phoneNumber}</p>
                         <p>{this.email}</p>
-                        <p>{this.linkedin}</p>
+                        <p>{this.linkedin}</p>  
                         <p>{this.github}</p>
                         <p>{this.website}</p>
                     </div>
 
      education =
                     <div id="education">
-                        <h3>Education</h3>
-                        <p>{this.degree}</p>
-                        <p>{this.gpa}</p>
-                        <p>{this.uniName}</p>
-                        <p>{`${this.uniStart} - ${this.uniEnd}`}</p>
-                        <p>{this.degree}</p>
-                        <p>{this.sgpa}</p>
-                        <p>{this.uniName}</p>
-                        <p>{`${this.uniStart} - ${this.uniEnd}`}</p>
+                        {this.eduList}
                     </div>
 
     skills = 
@@ -102,6 +119,9 @@ export default class ResumeTemplate extends Component {
                     </div>
 
     render () { 
+        this.pushEdu()
+        this.pushExperiences()
+        this.pushProjects()
         this.pushSkills();   
         return this.resume;
   }

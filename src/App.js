@@ -14,17 +14,17 @@ export default class App  extends Component {
   setValue = (e) => {
     var name = e.target.name;
     var value = e.target.value
-    this.setState({[name] : value});
+    this.setState({[name] : value}, c => (console.log(`${name} set`)));
   }
 
   setCount = (name, val) => {
-    this.setState({name: val});
+    this.setState({[name] : val}, c => (console.log(`${name} set: ${this.state[name]}`)));
   }
 
   presentResume = () => {
     this.setState({
-      active:  <Resume state = {this.state}/>
-    })
+      active:  <Resume state = {this.state} setCount = {this.setCount}/>
+    }, c => (console.log("Resume generated.")));
   }
   
   render () {

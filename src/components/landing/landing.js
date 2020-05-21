@@ -93,6 +93,13 @@ var Landing = (props) => {
     const [experienceElems, addExp] = useState([experience(0)]);
     const [educationElems, addEdu] = useState([]);
     const [projectElems, addProj] = useState([project(0)]);
+
+    async function setCount (callback) {
+        props.setCount('jobCount', jobCount);  
+        props.setCount('projectCount', projectCount);
+        props.setCount('eduCount', eduCount);
+        callback();
+    }
     
     return (
         <div id="landing">
@@ -154,7 +161,7 @@ var Landing = (props) => {
                 <input type="text" name="skills" onChange={e => props.setValue(e)} placeholder="ex. Python, Java, Kotlin, etc"/>
             </label>
             </form>
-            <button  onClick={e => {props.setCount('eduCount', eduCount); props.setCount('jobCount', jobCount); props.setCount('projectCount', projectCount); props.presentResume()}}>Submit</button>
+            <button  onClick={e => {setCount(props.presentResume)}}>Submit</button>
         </div>
     )
 }

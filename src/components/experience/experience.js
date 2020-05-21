@@ -3,15 +3,15 @@ import "./experience.css";
 
 var ResumeExperience = props => {
 
-    const itemTitle = "ItemTitle";
-    const itemCompany = "Company"
-    const itemLocation = "Location";
-    const startDate = "Start";
-    const endDate = "End";
-    const tagline = "tagline"
-    let bullets = []
+    const itemTitle = props.title;
+    const itemCompany = props.company;
+    const itemLocation = props.location;
+    const startDate = props.start;
+    const endDate = props.end;
+    const tagline = props.tagline;
+    const bulletItems = (props.contr) ? props.contr.split(',') : [];
+    let bullets = [];
 
-    const bulletItems = props.bulletItems
     bulletItems.forEach(item => {
         bullets.push(<li>{item}</li>)
     });

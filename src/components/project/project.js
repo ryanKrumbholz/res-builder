@@ -3,13 +3,12 @@ import "./project.css";
 
 var ResumeExperience = props => {
 
-    const itemTitle = "Project";
-    const technologies = ["Tech", "Tech", "Tech", "Tech"]
-    const date = "date";
-    const tagline = "tagline"
-    let bullets = []
-
-    const bulletItems = props.bulletItems
+    const itemTitle = props.title;
+    const technologies = props.technologies;
+    const date = props.date;
+    const tagline = props.tagline;
+    const bulletItems = (props.expContr) ? props.expContr.split(',') : [];
+    let bullets = [];
     bulletItems.forEach(item => {
         bullets.push(<li>{item}</li>)
     });
