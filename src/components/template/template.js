@@ -13,7 +13,7 @@ export default class ResumeTemplate extends Component {
     linkedin = this.state['linkedin'];
     github = this.state['github'];
     website = this.state['website'];
-    skillsList = (this.state['skills']) ? this.state['skills'].split(',') : ''
+    skillsList = (this.state['skills']) ? this.state['skills'].split(',') : '';
     jobCount = this.state['jobCount'];
     eduCount = this.state['eduCount'];
     projCount = this.state['projectCount'];
@@ -24,13 +24,14 @@ export default class ResumeTemplate extends Component {
 
     pushSkills = () => {
         for (let i = 0; i < this.skillsList.length; i++) {
+            console.log(i)
             this.skillsElemList.push(<li>{this.skillsList[i]}</li>);
-            this.skillsList.splice(i, 1)
-    }}
+    }
+    this.skillsList = [];
+}
 
     pushExperiences = () => {
         for (let i = 0; i < this.jobCount; i++) {
-            console.log(i)
             this.experienceList.push(<Experience title = {this.state[`jobTitle${i}`]} company = {this.state[`jobCompany${i}`]} location = {this.state[`jobLocation${i}`]} start = {this.state[`jobStart${i}`]} end = {this.state[`jobEnd${i}`]} tagline = {this.state[`jobDesc${i}`]} contr = {this.state[`jobContr${i}`]}/>)
         }
         this.jobCount = 0;
