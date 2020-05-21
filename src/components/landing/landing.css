@@ -1,12 +1,16 @@
 form {
     display: grid;
-    /* grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: 0px; */
     width: 50%;
 }
 
 input {
+    display: grid;
     width: 200px;
     height: 2vh;
     margin-top: 2vh;
+}
+
+button {
+    width: 75px;
+    height: 30px;
 }

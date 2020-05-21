@@ -29,25 +29,25 @@ export default class ResumeTemplate extends Component {
     }}
 
     pushExperiences = () => {
-        console.log(this.jobCount)
         for (let i = 0; i < this.jobCount; i++) {
+            console.log(i)
             this.experienceList.push(<Experience title = {this.state[`jobTitle${i}`]} company = {this.state[`jobCompany${i}`]} location = {this.state[`jobLocation${i}`]} start = {this.state[`jobStart${i}`]} end = {this.state[`jobEnd${i}`]} tagline = {this.state[`jobDesc${i}`]} contr = {this.state[`jobContr${i}`]}/>)
-            this.props.setCount('jobCount', this.jobCount - 1)
         }
+        this.jobCount = 0;
     }
 
     pushEdu = () => {
         for (let i = 0; i < this.eduCount; i++) {
             this.eduList.push(<Education degree = {this.state[`degree${i}`]} gpa = {this.state[`GPA${i}`]} uniName = {this.state[`uni${i}`]} uniStart = {this.state[`eduStart${i}`]} uniEnd ={this.state[`eduGrad${i}`]}/>)
-            this.props.setCount('eduCount', this.eduCount - 1)
         }
+        this.eduCount =  0;
     }
 
     pushProjects = () => {
         for (let i = 0; i < this.projCount; i++) {
             this.projectsList.push(<Project title  = {this.state[`projTitle${i}`]} technologies = {this.state[`projTech${i}`]} date  = {this.state[`projDate${i}`]} tagline = {this.state[`projDesc${i}`]} expContr = {this.state[`projContr${i}`]}/>)
-            this.props.setCount('projectCount', this.projCount - 1)
         }
+        this.projCount = 0;
     }
 
     header = 
@@ -61,7 +61,7 @@ export default class ResumeTemplate extends Component {
                         <h3>Contact</h3>
                         <p>{this.phoneNumber}</p>
                         <p>{this.email}</p>
-                        <p>{this.linkedin}</p>  
+                        {/* <p>{this.linkedin}</p>   */}
                         <p>{this.github}</p>
                         <p>{this.website}</p>
                     </div>
@@ -115,14 +115,17 @@ export default class ResumeTemplate extends Component {
                         <div id="resume">
                             {this.body}
                         </div>
-                        <button onClick={window.print}>Download Resume</button>
+                        <div id="buttons">
+                            {/* <button onClick={() => this.props.reviseResume()}>Revise</button> */}
+                            <button onClick={window.print}>Download Resume</button>
+                        </div>
                     </div>
 
     render () { 
-        this.pushEdu()
-        this.pushExperiences()
-        this.pushProjects()
-        this.pushSkills();   
+        this.pushSkills();  
+        this.pushEdu();
+        this.pushExperiences();
+        this.pushProjects();
         return this.resume;
   }
 }

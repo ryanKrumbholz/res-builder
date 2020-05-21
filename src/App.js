@@ -14,17 +14,23 @@ export default class App  extends Component {
   setValue = (e) => {
     var name = e.target.name;
     var value = e.target.value
-    this.setState({[name] : value}, c => (console.log(`${name} set`)));
+    this.setState({[name] : value}, () => (console.log(`${name} set`)));
   }
 
   setCount = (name, val) => {
-    this.setState({[name] : val}, c => (console.log(`${name} set: ${this.state[name]}`)));
+    this.setState({[name] : val}, () => (console.log(`${name} set: ${this.state[name]}`)));
   }
 
   presentResume = () => {
     this.setState({
-      active:  <Resume state = {this.state} setCount = {this.setCount}/>
-    }, c => (console.log("Resume generated.")));
+      active:  <Resume state = {this.state} setCount = {this.setCount} reviseResume = {this.reviseResume}/>
+    }, () => (console.log("Resume generated.")));
+  }
+
+  reviseResume = () => {
+    this.setState({
+      active:  <Landing setValue = {this.setValue} setCount = {this.setCount} presentResume = {this.presentResume}/>
+    }, () => (console.log("Revision mode.")));
   }
   
   render () {

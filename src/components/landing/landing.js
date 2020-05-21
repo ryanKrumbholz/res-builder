@@ -94,11 +94,10 @@ var Landing = (props) => {
     const [educationElems, addEdu] = useState([]);
     const [projectElems, addProj] = useState([project(0)]);
 
-    async function setCount (callback) {
+    async function setCount () {
         props.setCount('jobCount', jobCount);  
         props.setCount('projectCount', projectCount);
         props.setCount('eduCount', eduCount);
-        callback();
     }
     
     return (
@@ -125,10 +124,10 @@ var Landing = (props) => {
                 email:
                 <input type="text" name="email" onChange={e => props.setValue(e)} placeholder="ex. johhsmith@email.com"/>
             </label>
-            <label>
+            {/* <label>
                 Linkedin:
                 <input type="text" name="linkedin" onChange={e => props.setValue(e)} placeholder="ex. linkedin.com/in/yourname"/>
-            </label>
+            </label> */}
             <label>
                 Github:
                 <input type="text" name="github"onChange={e => props.setValue(e)} placeholder="ex. github.com/yourname" />
@@ -140,28 +139,28 @@ var Landing = (props) => {
             <h2>Education</h2>
             {educationElems}
             <button onClick={
-                e => {
-                    if (eduCount < 2)  {setEC(eduCount + 1); addEdu(educationElems.concat(education(eduCount)))}
+                () => {
+                    if (eduCount < 2)  {setEC(eduCount + 1); addEdu(educationElems.concat(education(eduCount))); setCount()}
                 }}>Add Education</button>
             <h2>Experience</h2>
             {experienceElems}
             <button onClick={
-                e => {
-                    if (jobCount + projectCount < 6) {setJC(jobCount + 1); addExp(experienceElems.concat(experience(jobCount)))}
+                () => {
+                    if (jobCount + projectCount < 6) {setJC(jobCount + 1); addExp(experienceElems.concat(experience(jobCount)));setCount()}
                 }}>Add Experience</button>
             <h2>Projects</h2>
             {projectElems}
             <button onClick={
-                e => {
-                    if (jobCount + projectCount < 6) {setPC(projectCount + 1); addProj(projectElems.concat(project(projectCount)))}
+                () => {
+                    if (jobCount + projectCount < 6) {setPC(projectCount + 1); addProj(projectElems.concat(project(projectCount)));setCount()}
                 }}>Add Project</button>
             <h2>Skills</h2>
             <label>
                 Skills:
-                <input type="text" name="skills" onChange={e => props.setValue(e)} placeholder="ex. Python, Java, Kotlin, etc"/>
+                <input type="text" name="skills" onChange={e => {props.setValue(e); setCount()}} placeholder="ex. Python, Java, Kotlin, etc"/>
             </label>
             </form>
-            <button  onClick={e => {setCount(props.presentResume)}}>Submit</button>
+            <button  onClick={() => {setCount(); props.presentResume()}}>Submit</button>
         </div>
     )
 }

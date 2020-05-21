@@ -10,8 +10,8 @@
     margin: auto;
     display: flex;
     flex-direction: column;
-    height: 9.352in;
-    width: 6.616in;
+    height: calc(11.69in * .8);
+    width: calc(8.27in * .8);
 }
 
 #resume h1 {
@@ -97,7 +97,7 @@
 }
 
 #contact, #education, #skills {
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 #mainBody {
@@ -107,6 +107,10 @@
 #bg button {
     margin: auto;
     width: 5vw;
+}
+
+#buttons {
+    display: flex;
 }
 
 @media print {
@@ -127,5 +131,11 @@
         height: 0;
         margin: 0;
         visibility: hidden;
+    }
+
+    #resume {
+        transform: scale(1.2); 
+        margin-top: 100px;
+        margin-left: 50px;
     }
 }
