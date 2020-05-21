@@ -28,6 +28,17 @@ class ResumeTemplate extends Component {
         <Project bulletItems = {["item", "item"]}/>,
         <Project bulletItems = {["item", "item"]}/>];
 
+        var printRes = () => {
+            var divContents = document.getElementById("resume").innerHTML; 
+            var div = window.open('', '' ); 
+            div.document.write('<html><body>'); 
+            div.document.write('<link rel="stylesheet" href="./template.css" type="text/css" />');
+            div.document.write(divContents); 
+            div.document.write('</body></html>'); 
+            div.document.close(); 
+            div.print(); 
+        }
+
         const header = 
                     <div id="header">
                         <h1>{name}</h1>
@@ -102,6 +113,7 @@ class ResumeTemplate extends Component {
                             {/* {header} */}
                             {body}
                         </div>
+                        <button onClick={window.print}>Download Resume</button>
                     </div>
                     
 

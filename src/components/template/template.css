@@ -1,5 +1,6 @@
 #bg {
     display: flex;
+    flex-direction: column;
     width: 100%;
     height: 100vh;
     background-color: gray;
@@ -9,8 +10,8 @@
     margin: auto;
     display: flex;
     flex-direction: column;
-    height: calc(11.69in * .75);
-    width: calc(8.27in * .75);
+    height: 9.352in;
+    width: 6.616in;
 }
 
 #resume h1 {
@@ -72,9 +73,10 @@
 
 #sideBody {
     height: 100%;
-    width: 175px;
+    width: 200px;
     border-right: black solid thin;
     margin-left: 5%;
+    padding-right: 2.5%;
 }
 
 #sideBody h3 {
@@ -83,7 +85,7 @@
 
 #sideBody ul {
     margin: 0;
-    padding: 0;
+    padding: 15px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 40px;
@@ -100,4 +102,30 @@
 
 #mainBody {
     margin-left: 5%;
+}
+
+#bg button {
+    margin: auto;
+    width: 5vw;
+}
+
+@media print {
+    html, body {
+        height:100%; 
+        margin: 0 !important; 
+        padding: 0 !important;
+        overflow: hidden;
+    }
+
+    #bg {
+        width: fit-content;
+        height: fit-content;
+    }
+
+    #bg button {
+        width: 0;
+        height: 0;
+        margin: 0;
+        visibility: hidden;
+    }
 }
