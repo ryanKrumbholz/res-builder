@@ -3,122 +3,106 @@ import "./template.css";
 import Experience from '../experience/experience';
 import Project from '../project/project';
 
-class ResumeTemplate extends Component {
-    render () {
-        const name = "Ryan Krumbholz";
-        const title = "Full-Stack Developer";
-        const phoneNumber = "(206) - 427 - 5234";
-        const email = "rak535@nyu.edu";
-        const linkedin = "linkedin.com/ryanKrumbholz";
-        const github = "github.com/ryanKrumbholz";
-        const website = "ryankrumbholz.me";
-        const degree = "Bachelor's of Science, Computer Science";
-        const gpa = "4.0";
-        const uniName = "New York University";
-        const uniStart = "2019";
-        const uniEnd = "2022";
-        let skillsList = ['JavaScript', 'Python', 'Java', 'Kotlin', 'C#', 'React', 'Node', 'Android', 'MongoDB', 'Redux', 'GraphQL', 'Rest', 'Html', 'CSS'];
-        let skillsElemList = [];
-        skillsList.forEach(skill => {
-            skillsElemList.push(<li>{skill}</li>);
-        });
-        let experienceList = [<Experience bulletItems = {["item", "item", "item", "item"]}/>,
-         <Experience bulletItems = {["item", "item", "item", "item"]}/>,  <Experience bulletItems = {["item", "item", "item", "item"]}/>];
-        let projectsList = [<Project bulletItems = {["item", "item"]}/>,
-        <Project bulletItems = {["item", "item"]}/>,
-        <Project bulletItems = {["item", "item"]}/>];
+export default class ResumeTemplate extends Component {
+    state = this.props.state;
+    name = this.state['name'];
+    title = this.state['title'];
+    phoneNumber = this.state['phoneNumber'];
+    email = this.state['email'];
+    linkedin = this.state['linkedin'];
+    github = this.state['github'];
+    website = this.state['website'];
+    skillsList = this.state['skills'].split(', ')
+    skillsElemList = [];
+    eduList = [];
+    experienceList = [];
+    projectsList = [];
 
-        var printRes = () => {
-            var divContents = document.getElementById("resume").innerHTML; 
-            var div = window.open('', '' ); 
-            div.document.write('<html><body>'); 
-            div.document.write('<link rel="stylesheet" href="./template.css" type="text/css" />');
-            div.document.write(divContents); 
-            div.document.write('</body></html>'); 
-            div.document.close(); 
-            div.print(); 
-        }
+    pushSkills = () => {
+        for (let i = 0; i < this.skillsList.length; i++) {
+        this.skillsElemList.push(<li>{this.skillsList[i]}</li>);
+        this.skillsList.splice(i, 1)
+    }}
+    
 
-        const header = 
+    header = 
                     <div id="header">
-                        <h1>{name}</h1>
-                        <h2>{title}</h2>
+                        <h1>{this.name}</h1>
+                        <h2>{this.title}</h2>
                     </div>
 
-        const contact = 
+    contact = 
                     <div id="contact">
                         <h3>Contact</h3>
-                        <p>{phoneNumber}</p>
-                        <p>{email}</p>
-                        <p>{linkedin}</p>
-                        <p>{github}</p>
-                        <p>{website}</p>
+                        <p>{this.phoneNumber}</p>
+                        <p>{this.email}</p>
+                        <p>{this.linkedin}</p>
+                        <p>{this.github}</p>
+                        <p>{this.website}</p>
                     </div>
 
-        const education =
+     education =
                     <div id="education">
                         <h3>Education</h3>
-                        <p>{degree}</p>
-                        <p>{gpa}</p>
-                        <p>{uniName}</p>
-                        <p>{`${uniStart} - ${uniEnd}`}</p>
-                        <p>{degree}</p>
-                        <p>{gpa}</p>
-                        <p>{uniName}</p>
-                        <p>{`${uniStart} - ${uniEnd}`}</p>
+                        <p>{this.degree}</p>
+                        <p>{this.gpa}</p>
+                        <p>{this.uniName}</p>
+                        <p>{`${this.uniStart} - ${this.uniEnd}`}</p>
+                        <p>{this.degree}</p>
+                        <p>{this.sgpa}</p>
+                        <p>{this.uniName}</p>
+                        <p>{`${this.uniStart} - ${this.uniEnd}`}</p>
                     </div>
 
-        const skills = 
+    skills = 
                     <div id="skills">
                         <h3>Skills</h3>
                         <ul>
-                            {skillsElemList}
+                            {this.skillsElemList}
                         </ul>
                     </div>
 
-        const sideBody = 
+    sideBody = 
                     <div id="sideBody">
-                        {header}
-                        {contact}
-                        {education}
-                        {skills}
+                        {this.header}
+                        {this.contact}
+                        {this.education}
+                        {this.skills}
                     </div>
 
-        const experience = 
+    experience = 
                     <div id="section"> 
                         <h3>Experience</h3>
-                        {experienceList}
+                        {this.experienceList}
                     </div>
 
-        const projects = 
+    projects = 
                     <div>
                         <h3>Projects</h3>
-                        {projectsList}
+                        {this.projectsList}
                     </div>
 
-        const mainBody = 
+    mainBody = 
                     <div id="mainBody">
-                        {experience}
-                        {projects}
+                        {this.experience}
+                        {this.projects}
                     </div>
-        const body =
+    body =
                     <div id="body">
-                        {sideBody}
-                        {mainBody}
+                        {this.sideBody}
+                        {this.mainBody}
                     </div>
 
-        const resume = 
+    resume = 
                     <div id="bg">
                         <div id="resume">
-                            {/* {header} */}
-                            {body}
+                            {this.body}
                         </div>
                         <button onClick={window.print}>Download Resume</button>
                     </div>
-                    
 
-        return resume;
+    render () { 
+        this.pushSkills();   
+        return this.resume;
   }
 }
-
-export default ResumeTemplate;
